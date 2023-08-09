@@ -1,12 +1,59 @@
-# React Chat
+# React Chat App
 
-### Real-Time Chatting App 
+Real-time chat application using React, Vite, and Firebase.
 
-	*  Modern and interactive platform for real-time communication and collaboration 
-	*  Built using React, Vite, and Firebase technologies for a seamless user experience 
-	*  Experience instant messaging, private chat rooms, and easy login options 
+## Getting Started 
+
+1. Clone the project.
+
+```bash
+git clone https://github.com/JamesKim4913/react-chat.git
+```
+
+1. Navigate to the project directory:
+```bash
+cd firebase-chat-app
+```
+
+1. Install the required packages:
+```bash
+npm install
+```
+
+1. Set up your Firebase project: 
+	Create a new project in the Firebase console and add a web app. Copy the generated configuration object and paste it into the src/firebaseConfig.js file.
+```bash
+// src/firebaseConfig.js
+const firebaseConfig = {
+  apiKey: "your-api-key",
+  authDomain: "your-auth-domain",
+  projectId: "your-project-id",
+  storageBucket: "your-storage-bucket",
+  messagingSenderId: "your-messaging-sender-id",
+  appId: "your-app-id"
+};
+
+export default firebaseConfig;
+
+```
+
+1. Run the application:
+```bash
+npm run dev
+```
+
+	The application will be running at http://localhost:5173/
+
+### Features 
+	*  Users can log in to join chat rooms.
+	*  Real-time updates show new messages as they come in, allowing users to see the chat conversation.
+	*  Users can input and send messages.
+
+### Contributing
+	Thank you for your interest in contributing to this project! Any contributions are welcome. Whether it's bug reports, feature suggestions, or code improvements, feel free to submit a Pull Request.
+
+### License
+	This project is licensed under the MIT License.
 
 ### Screenshot  
-![Screenshot](https://github.com/JamesKim4913/react-chat/blob/c9070cbd280272d60ab1151f4a4dfb251aff89b2/screenshot/screenshot1.jpg)  
-![Screenshot](https://github.com/JamesKim4913/react-chat/blob/c9070cbd280272d60ab1151f4a4dfb251aff89b2/screenshot/screenshot2.jpg)  
-![Screenshot](https://github.com/JamesKim4913/react-chat/blob/c9070cbd280272d60ab1151f4a4dfb251aff89b2/screenshot/screenshot3.jpg) 
+![Screenshot](https://github.com/JamesKim4913/react-chat/blob/b085435a20fcf251d47aa3b09efe6e31b7bae33c/screenshot/ani.gif)  
