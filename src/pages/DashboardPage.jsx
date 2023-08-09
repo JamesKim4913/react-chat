@@ -82,7 +82,6 @@ const DashboardPage = () => {
   useEffect(() => { 
     fetchChatRooms();
   }, []);
-
   
   // Send message to chat room
   const handleSendMessage = async (roomId, message) => {  
@@ -98,7 +97,6 @@ const DashboardPage = () => {
       alert('An error occurred while sending the message. Please try again later.');
     }
   };
-
 
   return (
     <Container maxWidth="sm">

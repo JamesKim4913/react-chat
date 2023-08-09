@@ -14,8 +14,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { pages } from '../constants/constants.js';
 import ChatIcon from '@mui/icons-material/Chat';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+import AdbIcon from '@mui/icons-material/Adb';
+import { pages, settings, getStarted } from '../constants/constants.js';
 import { useAuth  } from '../contexts/authContext'; // Import the useAuth hook
 import useLocalStorage from '../hooks/useLocalStorage';
 
@@ -25,9 +28,12 @@ export default function Navbar() {
     const [openNotification, setOpenNotification] = useState(false);
     const [notificationMessage, setNotificationMessage] = useState('');  
     const [anchorElNav, setAnchorElNav] = useState(null);
+    const [anchorElUser, setAnchorElUser] = useState(null);
     const { currentUser } = useAuth();
     const [user, setUser] = useLocalStorage('user', null);
     const [isLogged, setIsLogged] = useState(false);
+    const [displayName, setDisplayName] = useState('');
+    const [photoURL, setPhotoURL] = useState(null);
 
     function checkStorage() {
       if (user) {
@@ -39,16 +45,34 @@ export default function Navbar() {
 
     useEffect(() => {
       checkStorage();
+
+      if(currentUser) {
+        // Set the displayName
+        setDisplayName(currentUser.displayName || '');
+        // Set profile image url
+        setPhotoURL(currentUser.photoURL || '');
+      }     
+
       return () => {};
     }, [isLogged]);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
+
+    const handleOpenUserMenu = (event) => {
+      setAnchorElUser(event.currentTarget);
+    };
+
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
 
+    const handleCloseUserMenu = () => {
+      setAnchorElUser(null);
+    };    
+
+    // Logout 
     const handleLogout = () => {
       signOut(auth).then(() => {
           setOpenNotification(true);
@@ -116,7 +140,7 @@ export default function Navbar() {
                   }}
                 > 
                   {pages.map((page) => (
-                    <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                    <MenuItem key={page.value} onClick={handleCloseNavMenu}>
                       <Typography textAlign="center" component={Link} to={page.value}>{page.name}</Typography>
                     </MenuItem>
                   ))}
@@ -147,7 +171,7 @@ export default function Navbar() {
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 {pages.map((page) => (
                   <Button
-                    key={page.name}
+                    key={page.value}
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: 'white', display: 'block' }}
                     component={Link} to={page.value}
@@ -155,15 +179,45 @@ export default function Navbar() {
                     {page.name}
                   </Button>
                 ))}
-              </Box>              
+              </Box>  
 
-              {!currentUser ? (
-                <Button color="inherit" component={Link} to="/signin">Login</Button>
-              ) : (
-                <Button onClick={handleLogout} variant='contained' color='error'>
-                  Logout
-                </Button>
-              )}           
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt={displayName || ''} src={photoURL || ''} />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {!currentUser ? (  // Non login user
+                    getStarted.map((setting) => (
+                      <MenuItem key={setting.value} onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center" component={Link} to={setting.value}>{setting.name}</Typography>
+                      </MenuItem>
+                    ))
+                  ) : (   // Login user
+                    settings.map((setting) => (
+                      <MenuItem key={setting.value} onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center" component={Link} to={setting.value}>{setting.name}</Typography>
+                      </MenuItem>
+                    ))
+                  )}                 
+                </Menu>
+              </Box>                          
 
             </Toolbar>
           </Container>

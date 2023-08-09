@@ -130,18 +130,11 @@ export default function SignUp() {
             <Button variant="contained"  onClick={handleSignUpWithGoogle}>
               <GoogleIcon /> Sign Up With Google
             </Button>
-            {/* <Divider 
-              sx={{
-              marginTop: 1,
-            }} />
-            <Button variant="contained"  onClick={handleSignUpWithFacebook}>
-              <FacebookIcon /> Sign Up With Facebook
-            </Button> */}
+           
             <Divider 
               sx={{
               marginTop: 2,
             }}>OR</Divider>
-
 
             <Box noValidate sx={{ mt: 1 }}>
               <TextField

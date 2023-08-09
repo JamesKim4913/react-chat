@@ -91,7 +91,13 @@ const CreateChatRoomPage = () => {
         )}
 
         <Box mt={2} />
-        <Button sx={{ mt: 1 }} variant="contained" color="primary" fullWidth onClick={handleCreateRoom}>
+        <Button          
+          sx={{ mt: 1 }} 
+          variant="contained" 
+          color="primary" 
+          fullWidth 
+          onClick={handleCreateRoom}
+        >
           Create Chat Room
         </Button>
      

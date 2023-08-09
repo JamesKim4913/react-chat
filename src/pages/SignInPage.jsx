@@ -43,8 +43,7 @@ export default function SignIn() {
 
     const [openNotification, setOpenNotification] = useState(false);
     const [notificationMessage, setNotificationMessage] = useState('');
-    const navigate = useNavigate();
-    
+    const navigate = useNavigate();    
 
     const handleSignInWithGoogle = () => {
         signInWithPopup(auth, googleProvider).then((response) => {
@@ -129,13 +128,7 @@ export default function SignIn() {
             <Button variant="contained"  onClick={handleSignInWithGoogle}>
               <GoogleIcon /> Sign In With Google
             </Button>
-            {/* <Divider 
-              sx={{
-              marginTop: 1,
-            }} />
-            <Button variant="contained"  onClick={handleSignInWithFacebook}>
-              <FacebookIcon /> Sign In With Facebook
-            </Button> */}
+           
             <Divider 
               sx={{
               marginTop: 2,

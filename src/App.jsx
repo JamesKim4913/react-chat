@@ -1,13 +1,16 @@
 // App.jsx
 import { useRoutes } from 'react-router-dom';
 import './App.css';
+import useLocalStorage from './hooks/useLocalStorage';
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import NotFoundPage from './pages/NotFoundPage';
 import CreateChatRoomPage from './pages/CreateChatRoomPage';
 import ChatRoomPage from './pages/ChatRoomPage';
 import DashboardPage from './pages/DashboardPage';
-import useLocalStorage from './hooks/useLocalStorage';
+import ProfilePage from './pages/ProfilePage';
+import Logout from './components//Logout';
+import PinPage from './pages/PinPage';
 
 
 function App() {
@@ -34,7 +37,19 @@ function App() {
     {
       path: '/create',
       element: <CreateChatRoomPage />
-    },   
+    },  
+    {
+      path: '/profile',
+      element: <ProfilePage />
+    },  
+    {
+      path: '/logout',
+      element: <Logout />
+    },    
+    {
+      path: '/pin',
+      element: <PinPage />
+    },          
     {
       path: '/chat/:roomId',
       element: <ChatRoomPage />
