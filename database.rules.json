@@ -1,0 +1,17 @@
+{
+  "rules": {
+    ".read": "auth != null || !data.exists()",
+    ".write": "auth != null",
+    "chatRooms": {
+      ".indexOn": ["createdBy"],
+      "$roomId": {
+        ".read": "auth != null || !data.exists()",
+        ".write": "auth != null",
+        "messages": {
+          ".read": "auth != null || !data.exists()",
+          ".write": "auth != null"
+        }
+      }
+    }
+  }
+}
