@@ -2,6 +2,9 @@
 
 Real-time chat application using React, Vite, and Firebase.
 
+React-Chat: [DEPLOYED URL](https://react-chat-b332c.web.app/)
+
+
 ## Getting Started 
 
 1. Clone the project.
